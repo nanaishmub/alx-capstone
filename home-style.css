@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;    
+}
+
+#logo{
+    height: 50px;
+    width: 50px
+}
+
+#logo-name {
+    font-size: 10px;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    margin: 15px 30px;
+    line-height: 50px;
+}
+
+#nav-container{
+    margin-left: 20px;
+}
+
+#nav-container ul li input{
+    border-radius: 40px;
+    height: 25px;
+    width: 240px;
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    line-height: 10px;
+} 
+
+nav ul li{
+    list-style: none;
+    margin: auto 10px;
+    height: 40px;
+    line-height: 35px;
+}
+
+#home-screen{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-image: url(./images/food-bg.jpeg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#home-screen img {
+    height: 450px;
+    margin: 50px;
+}
+
+#home-screen h1{
+    font-family: 'Edu+NSW+ACT+Cursive', cursive;
+}
