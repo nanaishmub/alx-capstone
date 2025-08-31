@@ -5,6 +5,11 @@
     box-sizing: border-box;
 
 }
+
+body {
+    background-color: rgb(255, 240, 217);
+}
+
 header {
     width: 100%;  
     top: 0;
@@ -73,4 +78,69 @@ nav ul li{
 .nav-link:active{
     background-color: #b8b8b8;
     color: white;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    margin: 60px;
+}
+
+#profile-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 60px;
+}
+
+#profile-container h2, h3{
+    font-size: 2em;
+    margin: 30px;
+    font-family: "Edu NSW ACT Cursive";
+    color:rgb(78, 31, 31);
+}
+
+#savedRecipes-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #nav-container ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #home-screen {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+    
+    #home-screen img {
+        width: 150px;
+        height: 150px;
+        margin: 20px auto;
+    }
+    
+    #home-screen h1 {
+        font-size: 2.5rem;
+    }
+    
+    .recipe-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .recipes-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
 }
