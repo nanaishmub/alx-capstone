@@ -2,21 +2,34 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+
 }
 
 body{
-    
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    background-image: url(./images/spices.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
 }
 
 header {
-    display: flex;
-    flex-direction: row;
     width: 100%;    
+}
+
+#logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 #logo{
     height: 50px;
-    width: 50px
+    width: 50px;
+    border-radius: 50%;
 }
 
 #logo-name {
@@ -31,48 +44,76 @@ nav{
     width: 100%;
     position: relative;
     box-sizing: border-box;
-    margin: 15px 30px;
-    line-height: 50px;
+    padding: 15px 30px;
 }
 
 #nav-container{
     margin-left: 20px;
 }
 
-#nav-container ul li input{
+#search-bar{
     border-radius: 40px;
-    height: 25px;
+    height: 40px;
     width: 240px;
+    padding: 0 15px;
+    border: none;
+    border: 2px solid #e0e0e0;
 }
 
-nav ul{
+#nav-container ul{
     display: flex;
     flex-direction: row;
-    line-height: 10px;
 } 
 
 nav ul li{
     list-style: none;
-    margin: auto 10px;
+    margin: 0 10px;
     height: 40px;
-    line-height: 35px;
+    line-height: 20px;
+}
+
+.nav-link{
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 40px;
+}
+
+.nav-link:hover,
+.nav-link:active{
+    background-color: #b8b8b8;
+    color: white;
 }
 
 #home-screen{
     height: 100vh;
     width: 100%;
     display: flex;
-    flex-direction: row;
-    background-image: url(./images/food-bg.jpeg);
-    background-size: contain;
-    background-repeat: no-repeat;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+}
+
+#home-screen img, #start-button{
+    
 }
 
 #home-screen img {
-    height: 450px;
-    margin: 50px;
+    height: 350px;
+    width: 350px;
+    margin-left: 150px;
 }
 
-#home-screen h1{
-    font-family: 'Edu+NSW+ACT+Cursive', cursive;
+#start-button {
+    color: black;
+    width: 250px;
+    background-color: #d8d8d8;
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: none;
+    border: solid #d8d8d8;
+    margin-left: 200px;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
