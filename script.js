@@ -38,8 +38,8 @@ async function searchRecipes() {
     const option = document.querySelector('input[name="option"]:checked');
     let apiSearch;
 
-    if(option === 'name') {
-        apiSearch = "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata";
+    if(option && option.value === 'name') {
+        apiSearch = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`;
     } else {
         apiSearch = "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
     }
@@ -71,7 +71,7 @@ async function searchRecipes() {
     }
 
     
-    function displayRecipes(recipes) {
+function displayRecipes(recipes) {
         recipesContainer.innerHTML = '';
 
         recipes.forEach(recipe => {
@@ -91,7 +91,7 @@ async function searchRecipes() {
                     View Recipe
                     <button>
                 <button class="btn btn-secondary" onclick="toggleSaveRecipe('${recipe.idMeal}')">
-                                ${isSaved ? '❤️ Saved' : '🤍 Save'}
+                                ${isSaved ? 'Saved' : 'Save'}
                             </button>
                         </div>
                     </div>
@@ -101,8 +101,32 @@ async function searchRecipes() {
             });
         }
             
-        
-        })
-    }
+        const viewRecipeDetail= async (recipeId) => {
+            try {
+                const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`);
+                const data = await response.json();
 
-})
+                if (data.meals) {
+                    const recipe = data.meals[0];
+                    showRecipeDetails(recipe);
+                    showPage('recipeDetailPage');
+                } else {
+                    alert('Recipe detail not found');
+                }
+            } catch (error) {
+                console.error ('Error fetching recipe details:', error);
+                alert('Error. Please try again');
+            }
+        }
+
+        function showRecipeDetails(recipe) {
+            const ingredients = [];
+            for (let i =1; i <= 20; i++){
+                const ingredient = recipe[`strIngredient${i}`];
+                const measure = recipe[`strMeasure${i}`];
+                if (ingredient && ingredient.trim()) {
+                    ingredients.push(`${measure || ''} ${ingredient}`.trim());
+                }
+            }
+        }
+    })
