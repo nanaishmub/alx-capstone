@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function(){
+
 let savedRecipes = [];
 let currentRecipes = [];
 
@@ -7,11 +9,11 @@ const navSearch = document.getElementById('search-bar');
 const recipesContainer = document.getElementById('recipesContainer');
 
 searchBtn.addEventListener('click', searchRecipes);
-searchBtn.inputMode.addEventListener('keypress', (e) => {
+searchInput.addEventListener('keypress', (e) => {
     if(e.key === 'Enter') searchRecipes();
 });
 
-navSearchInput.addEventListener('keypress', (e) => {
+navSearch.addEventListener('keypress', (e) => {
     if(e.key === 'Enter'){
         searchInput.value = navSearch.value;
         showPage('catalogue');
@@ -33,13 +35,13 @@ async function searchRecipes() {
         return;
     }
     
-    const option = document.querySelector('input[name="option"]');
+    const option = document.querySelector('input[name="option"]:checked');
     let apiSearch;
 
-    if(searchType === 'Recipe Name') {
+    if(option === 'name') {
         apiSearch = "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata";
     } else {
-        apiSearch = "www.themealdb.com/api/json/v1/1/list.php?c=list"
+        apiSearch = "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
     }
     try{
         const response = await fetch(apiSearch);
@@ -61,10 +63,46 @@ async function searchRecipes() {
     } catch (error) {
         recipesContainer.innerHTML = `
             <div class="error-message">
+                <h3>404!</h3>
                 <p>No recipes found! please try again</p>
             </div>
             `;
         console.error('Search error: ', error);
     }
 
-}    
+    
+    function displayRecipes(recipes) {
+        recipesContainer.innerHTML = '';
+
+        recipes.forEach(recipe => {
+            const isSaved = savedRecipes.some(saved => saved.idMeal === recipe.idMeal);
+
+            const recipeCard = document.createElement('div');
+            recipeCard.className ='recipe-card';
+
+            recipeCard.innerHTML = `
+            <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" loading="lazy">
+            <div class="recipe-card-content">
+                <h3>${recipe.strMeal}</h3>
+            <p>${recipe.strArea ? `${recipe.strArea} Cuisine`: 'Delicious Recipe'}</p>
+            <p><strong>Category: </strong> ${recipe.strCategory || 'Main Course'}</p>
+            <div class ="recipe-actions">
+                <button class="btn btn-primary" onclick="viewRecipeDetail('${recipe.idMeal}')">
+                    View Recipe
+                    <button>
+                <button class="btn btn-secondary" onclick="toggleSaveRecipe('${recipe.idMeal}')">
+                                ${isSaved ? '❤️ Saved' : '🤍 Save'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                recipesContainer.appendChild(recipeCard);
+            });
+        }
+            
+        
+        })
+    }
+
+})
