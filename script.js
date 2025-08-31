@@ -14,5 +14,18 @@ searchBtn.inputMode.addEventListener('keypress', (e) => {
 navSearchInput.addEventListener('keypress', (e) => {
     if(e.key === 'Enter'){
         searchInput.value = navSearch.value;
+        showPage('catalogue');
+        searchRecipes();
     }
-})
+});
+
+function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
+
+    document.getElementById(pageId).classList.add('active');
+
+    const navLinks = document.querySelectorAll(".nav-link");
+    navLinks.forEach(link => link.classList.remove('active'));
+ 
+}
