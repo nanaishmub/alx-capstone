@@ -41,8 +41,9 @@ async function searchRecipes() {
     if(option && option.value === 'name') {
         apiSearch = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`;
     } else {
-        apiSearch = "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
+        apiSearch = `https://www.themealdb.com/api/json/v1/1/list.php?i=${searchValue}`;
     }
+
     try{
         const response = await fetch(apiSearch);
         if (!response.ok){
@@ -119,14 +120,47 @@ function displayRecipes(recipes) {
             }
         }
 
-        function showRecipeDetails(recipe) {
-            const ingredients = [];
-            for (let i =1; i <= 20; i++){
-                const ingredient = recipe[`strIngredient${i}`];
-                const measure = recipe[`strMeasure${i}`];
-                if (ingredient && ingredient.trim()) {
-                    ingredients.push(`${measure || ''} ${ingredient}`.trim());
-                }
+            function showRecipeDetails(recipe) {
+                    const detailContainer = document.getElementById('recipe-content');
+
+                    detailContainer.innerHTML = `
+                    <h2>${recipe.strMeal}</h2>
+                    <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" />
+                    <p><strong>Category:</strong> ${recipe.strCategory}</p>
+                    <p><strong>Area:</strong> ${recipe.strArea}</p>
+                    <h3>Instructions</h3>
+                    <p>${recipe.strInstructions}</p>
+                    `;
             }
+        
+
+        function displaySavedRecipes(recipes) {
+        savedRecipesContainer.innerHTML = '';
+
+        recipes.forEach(recipe => {
+            const isSaved = savedRecipes.some(saved => saved.idMeal === recipe.idMeal);
+
+            const savedRecipeCard = document.createElement('div');
+            savedRecipeCard.className ='savedRecipe-card';
+
+            savedRecipeCard.innerHTML = `
+            <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" loading="lazy">
+            <div class="recipe-card-content">
+                <h3>${recipe.strMeal}</h3>
+            <p>${recipe.strArea ? `${recipe.strArea} Cuisine`: 'Delicious Recipe'}</p>
+            <p><strong>Category: </strong> ${recipe.strCategory || 'Main Course'}</p>
+            <div class ="recipe-actions">
+                <button class="btn btn-primary" onclick="viewRecipeDetail('${recipe.idMeal}')">
+                    View Recipe
+                    <button>
+                <button class="btn btn-secondary" onclick="toggleSaveRecipe('${recipe.idMeal}')">
+                                ${isSaved ? 'Saved' : 'Save'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                recipesContainer.appendChild(recipeCard);
+            });
         }
     })
