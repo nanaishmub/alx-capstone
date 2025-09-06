@@ -33,7 +33,7 @@ Mabroor-Digital-Cookbook/
 ├── app.js              # JavaScript (API calls, search, recipe display)
 ├── images/             # Project images (logo, food backgrounds, etc.)
 └── README.md           # Project documentation
-
+```
 ---
 
 ## 📌 Usage
