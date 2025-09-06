@@ -12,7 +12,7 @@ A simple, beginner-friendly **digital recipe finder** that lets you search recip
 - ❤️ **Save & Manage Favorite Recipes**  
 - 🎨 **Responsive UI** with custom design and gradient backgrounds  
 
----
+--
 
 ## 🛠️ Tech Stack  
 
@@ -21,7 +21,7 @@ A simple, beginner-friendly **digital recipe finder** that lets you search recip
 - **JavaScript (ES6)** – Functionality & API calls  
 - **TheMealDB API** – Recipe data source  
 
----
+--
 
 ## 📂 Project Structure  
 
@@ -34,7 +34,7 @@ Mabroor-Digital-Cookbook/
 ├── images/             # Project images (logo, food backgrounds, etc.)
 └── README.md           # Project documentation
 ```
----
+--
 
 ## 📌 Usage
 
@@ -44,7 +44,7 @@ Mabroor-Digital-Cookbook/
 - Browse the recipe cards and click View Recipe for full details.
 - Save your favorite recipes using the ❤️ button.
 
----
+--
 
 ## 🎨 UI Highlights
 
