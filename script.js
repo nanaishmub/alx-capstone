@@ -90,8 +90,8 @@ function displayRecipes(recipes) {
             <div class ="recipe-actions">
                 <button class="btn btn-primary" onclick="viewRecipeDetail('${recipe.idMeal}')">
                     View Recipe
-                    <button>
-                <button class="btn btn-secondary" onclick="toggleSaveRecipe('${recipe.idMeal}')">
+                    </button>
+                <button class="btn btn-secondary" onclick="toggleSaveRecipe('${recipe}')">
                                 ${isSaved ? 'Saved' : 'Save'}
                             </button>
                         </div>
@@ -102,7 +102,7 @@ function displayRecipes(recipes) {
             });
         }
             
-        window.viewRecipeDetail= async (recipeId) => {
+        window.viewRecipeDetail = async (recipeId) => {
             try {
                 const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`);
                 const data = await response.json();
@@ -134,33 +134,32 @@ function displayRecipes(recipes) {
             }
         
 
-        function displaySavedRecipes(recipes) {
-        savedRecipesContainer.innerHTML = '';
+        function toggleSaveRecipe(recipes) {
+            savedRecipesContainer.innerHTML = '';
 
-        recipes.forEach(recipe => {
-            const isSaved = savedRecipes.some(saved => saved.idMeal === recipe.idMeal);
+            recipes.forEach(recipe => {
+                const isSaved = savedRecipes.some(saved => saved.idMeal === recipe.idMeal);
 
-            const savedRecipeCard = document.createElement('div');
-            savedRecipeCard.className ='savedRecipe-card';
+                const savedRecipeCard = document.createElement('div');
+                savedRecipeCard.className ='savedRecipe-card';
 
-            savedRecipeCard.innerHTML = `
-            <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" loading="lazy">
-            <div class="recipe-card-content">
-                <h3>${recipe.strMeal}</h3>
-            <p>${recipe.strArea ? `${recipe.strArea} Cuisine`: 'Delicious Recipe'}</p>
-            <p><strong>Category: </strong> ${recipe.strCategory || 'Main Course'}</p>
-            <div class ="recipe-actions">
-                <button class="btn btn-primary" onclick="viewRecipeDetail('${recipe.idMeal}')">
-                    View Recipe
-                    <button>
-                <button class="btn btn-secondary" onclick="toggleSaveRecipe('${recipe.idMeal}')">
-                                ${isSaved ? 'Saved' : 'Save'}
-                            </button>
+                savedRecipeCard.innerHTML = `
+                <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" loading="lazy">
+                <div class="recipe-card-content">
+                    <h3>${recipe.strMeal}</h3>
+                <p>${recipe.strArea ? `${recipe.strArea} Cuisine`: 'Delicious Recipe'}</p>
+                <p><strong>Category: </strong> ${recipe.strCategory || 'Main Course'}</p>
+                <div class ="recipe-actions">
+                    <button class="btn btn-primary" onclick="viewRecipeDetail('${recipe.idMeal}')">
+                        View Recipe
+                        </button>
+                                    ${isSaved ? 'Saved' : 'Save'}
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                `;
-                
-                recipesContainer.appendChild(recipeCard);
-            });
+                    `;
+
+                    savedRecipesContainerecipesContainer.appendChild(savedRecipeCard);
+                });
         }
     })
