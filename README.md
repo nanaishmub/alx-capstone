@@ -25,6 +25,7 @@ A simple, beginner-friendly **digital recipe finder** that lets you search recip
 
 ## 📂 Project Structure  
 
+```plaintext
 Mabroor-Digital-Cookbook/
 │
 ├── index.html          # Main homepage

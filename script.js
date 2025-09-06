@@ -69,7 +69,7 @@ async function searchRecipes() {
             `;
         console.error('Search error: ', error);
     }
-
+}
     
 function displayRecipes(recipes) {
         recipesContainer.innerHTML = '';
@@ -101,7 +101,7 @@ function displayRecipes(recipes) {
             });
         }
             
-        const viewRecipeDetail= async (recipeId) => {
+        window.viewRecipeDetail= async (recipeId) => {
             try {
                 const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`);
                 const data = await response.json();
